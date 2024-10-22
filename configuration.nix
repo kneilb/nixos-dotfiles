@@ -31,6 +31,9 @@ in
   # NAB additions
   networking.hostName = "beastie";
   time.timeZone = "Europe/London";
+  i18n.defaultLocale = "en_GB.UTF-8";
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   users.mutableUsers = false;
   users.users.kneilb = {
@@ -49,12 +52,13 @@ in
     pkgs.yq
 
     pkgs.dust # Disk usage analyser
-    #pkgs.ncdu # Disk usage analyser
+    pkgs.ncdu # Disk usage analyser
 
     pkgs.cmake
     pkgs.gcc
     pkgs.gnumake
     pkgs.gdb
+
     pkgs.python3
 
     pkgs.kubectl
