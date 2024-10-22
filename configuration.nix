@@ -6,16 +6,7 @@
 # https://github.com/nix-community/NixOS-WSL
 
 { config, lib, pkgs, ... }:
-let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
-in
 {
-  imports = [
-    # include NixOS-WSL modules
-    <nixos-wsl/modules>
-    (import "${home-manager}/nixos")
-  ];
-
   wsl.enable = true;
   wsl.defaultUser = "kneilb";
   wsl.interop.includePath = false; # Don't add Windows to the PATH
@@ -95,7 +86,16 @@ in
       userName = "Neil Burningham";
       userEmail = "kneilb@gmail.com";
       extraConfig = {
+        color.branch = "auto";
+        color.diff = "auto";
+        color.status = "auto";
+        color.ui = "auto";
+        credential.helper = "store";
         init.defaultBranch = "main";
+        fetch.prune = "true";
+        merge.ff = "false";
+        pull.ff = "only";
+        push.default = "simple";
       };
       aliases = {
         lol = "log --graph --decorate --pretty=oneline --abbrev-commit";
@@ -104,6 +104,14 @@ in
         lomm = "log --merges --first-parent origin/master --pretty=format:\"%h %<(16,trunc)%an %<(15)%ar %s\"";
         sti = "ls-files -i --exclude-standard";
       };
+      ignores = [
+        "*~"
+        "cscope.*"
+        "GPATH"
+        "GRTAGS"
+        "GSYMS"
+        "GTAGS"
+      ];
     };
 
     programs.fzf = {
