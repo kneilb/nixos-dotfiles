@@ -25,3 +25,8 @@ sudo nixos-rebuild switch --extra-experimental-features nix-command --extra-expe
 ```
 
 Assuming it works, the new config will have the experimental stuff enabled, so there's no need to keep passing those options.
+i.e. you can just do this:
+
+```
+sudo nixos-rebuild switch flakes --flake ~/.nixos
+```

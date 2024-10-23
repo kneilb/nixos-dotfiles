@@ -5,6 +5,8 @@
 # NixOS-WSL specific options are documented on the NixOS-WSL repository:
 # https://github.com/nix-community/NixOS-WSL
 
+# let stateVersion = "24.05";
+
 { config, lib, pkgs, ... }:
 {
   wsl.enable = true;
@@ -73,12 +75,12 @@
 
     programs.emacs = {
       enable = true;
-      package = ((pkgs.emacsPackagesFor pkgs.emacs-nox).emacsWithPackages(
-        epkgs: [epkgs.melpaPackages.nix-mode]
-      ));
-      extraConfig = ''
-        (setq standard-indent 2)
-      '';
+      package = (pkgs.emacsWithPackagesFromUsePackage{
+        config = ./emacs.el;
+        defaultInitFile = true;
+        package = pkgs.emacs-nox;
+	alwaysEnsure = true;
+      });
     };
 
     programs.git = {
