@@ -5,21 +5,22 @@
 # NixOS-WSL specific options are documented on the NixOS-WSL repository:
 # https://github.com/nix-community/NixOS-WSL
 
-# let stateVersion = "24.05";
-
 { config, lib, pkgs, ... }:
-{
-  wsl.enable = true;
-  wsl.defaultUser = "kneilb";
-  wsl.interop.includePath = false; # Don't add Windows to the PATH
-  
+let
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It's perfectly fine and recommended to leave
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05"; # Did you read the comment?
+  stateVersion = "24.05";
+in
+{
+  wsl.enable = true;
+  wsl.defaultUser = "kneilb";
+  wsl.interop.includePath = false; # Don't add Windows to the PATH
+
+  system.stateVersion = "${stateVersion}"; # Did you read the comment?
 
   # NAB additions
   networking.hostName = "beastie";
@@ -63,8 +64,7 @@
   };
 
   home-manager.users.kneilb = {
-    # See comment for system.stateVersion
-    home.stateVersion = "24.05"; # Did you read the comment?
+    home.stateVersion = "${stateVersion}"; # Did you read the comment?
 
     programs.bat.enable = true;
     programs.btop.enable = true;
@@ -78,8 +78,8 @@
       package = (pkgs.emacsWithPackagesFromUsePackage{
         config = ./emacs.el;
         defaultInitFile = true;
-        package = pkgs.emacs-nox;
-	alwaysEnsure = true;
+        package = pkgs.emacs;
+        alwaysEnsure = true;
       });
     };
 
@@ -88,16 +88,11 @@
       userName = "Neil Burningham";
       userEmail = "kneilb@gmail.com";
       extraConfig = {
-        color.branch = "auto";
-        color.diff = "auto";
-        color.status = "auto";
-        color.ui = "auto";
         credential.helper = "store";
         init.defaultBranch = "main";
         fetch.prune = "true";
         merge.ff = "false";
         pull.ff = "only";
-        push.default = "simple";
       };
       aliases = {
         lol = "log --graph --decorate --pretty=oneline --abbrev-commit";
@@ -118,7 +113,7 @@
 
     programs.fzf = {
       enable = true;
-      enableFishIntegration = false;
+      enableFishIntegration = false; # Using fzf-fish instead
     };
 
     programs.fish = {
