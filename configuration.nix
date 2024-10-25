@@ -28,6 +28,11 @@ in
   i18n.defaultLocale = "en_GB.UTF-8";
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  # For devenv caching
+  nix.extraOptions = ''
+        extra-substituters = https://nixpkgs-python.cachix.org https://devenv.cachix.org;
+        extra-trusted-public-keys = nixpkgs-python.cachix.org-1:hxjI7pFxTyuTHn2NkvWCrAUcNZLNS3ZAvfYNuYifcEU= devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=;
+    '';
 
   users.mutableUsers = false;
   users.users.kneilb = {
@@ -48,13 +53,17 @@ in
     pkgs.dust # Disk usage analyser
     pkgs.ncdu # Disk usage analyser
 
-    pkgs.cmake
-    pkgs.gcc
-    pkgs.gnumake
-    pkgs.gdb
+    pkgs.devenv
 
-    pkgs.python3
+    # Do these via devenvs instead
+    # pkgs.cmake
+    # pkgs.gcc
+    # pkgs.gnumake
+    # pkgs.gdb
 
+    # pkgs.python3
+
+    # Needed for tide prompt
     pkgs.kubectl
   ];
 
@@ -68,6 +77,7 @@ in
 
     programs.bat.enable = true;
     programs.btop.enable = true;
+    programs.fd.enable = true;
     programs.htop.enable = true;
     programs.jq.enable = true;
     programs.ripgrep.enable = true;

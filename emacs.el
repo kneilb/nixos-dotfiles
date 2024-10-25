@@ -21,7 +21,7 @@
 ;;   :init (doom-modeline-mode 1)
 ;;   :custom ((doom-modeline-height 15)))
 
-;; Vertico & friends
+;; Vertico (vertical interactive completion).
 (use-package vertico
   :init
   (vertico-mode)
@@ -54,7 +54,7 @@
         completion-category-defaults nil
         completion-category-overrides '((file (styles partial-completion)))))
 
-;; Enable richer annotations using the Marginalia package
+;; Marginalia (rich annotations in the minibuffer)
 (use-package marginalia
   ;; Either bind `marginalia-cycle` globally or only in the minibuffer
   :bind (("M-A" . marginalia-cycle)
@@ -68,7 +68,7 @@
   ;; enabled right away. Note that this forces loading the package.
   (marginalia-mode))
 
-;; Example configuration for Consult
+;; Consult (Improved search and navigation commands)
 (use-package consult
   ;; Replace bindings. Lazily loaded by `use-package'.
   :bind (;; C-c bindings in `mode-specific-map'
@@ -103,7 +103,7 @@
          ("M-g i" . consult-imenu)
          ("M-g I" . consult-imenu-multi)
          ;; M-s bindings in `search-map'
-         ("M-s d" . consult-find)                  ;; Alternative: consult-fd
+         ("M-s d" . consult-fd)                    ;; Alternative: consult-find
          ("M-s c" . consult-locate)
          ("M-s g" . consult-grep)
          ("M-s G" . consult-git-grep)
@@ -174,6 +174,7 @@
   ;; (keymap-set consult-narrow-map (concat consult-narrow-key " ?") #'consult-narrow-help)
 )
 
+;; Embark (Minibuffer actions)
 (use-package embark
   :ensure t
 
@@ -231,11 +232,27 @@
   :config
   (setq which-key-idle-delay 0.3))
 
-(use-package nix-mode)
-
+;; Languages etc
 (use-package ccls
   :hook ((c-mode c++-mode objc-mode cuda-mode) .
 	 (lambda () (require 'ccls) (lsp))))
+(use-package crontab-mode)
+(use-package graphviz-dot-mode)
+(use-package mermaid-mode)
+(use-package nix-mode)
+(use-package rust-mode
+  :config
+  (setq rust-format-on-save t)
+  (setq rust-most-treesitter-derive t))
+(use-package terraform-mode)
+
+(use-package restclient)
+(use-package verb)
+(use-package org
+  :mode
+  ("\\.org\\'" . org-mode)
+  :config
+  (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 
 ;; A few more useful configurations...
 (use-package emacs
@@ -314,7 +331,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(ccls which-key editorconfig vertico use-package)))
+)
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
