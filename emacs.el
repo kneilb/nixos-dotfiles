@@ -305,6 +305,11 @@
   (setq desktop-restore-frames nil)
   (desktop-save-mode t)
 
+  ;; Font stuff (N/A for -nw)
+  (add-to-list 'default-frame-alist
+               '(font . "MesloLGS NF"))
+  (set-face-attribute 'default nil :height 120)
+
   ;; Use theme
   (setq modus-themes-mode-line '(accented borderless padded))
 

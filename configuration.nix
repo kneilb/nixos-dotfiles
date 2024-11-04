@@ -75,6 +75,11 @@ in
   home-manager.users.kneilb = {
     home.stateVersion = "${stateVersion}"; # Did you read the comment?
 
+    fonts.fontconfig.enable = true;
+    home.packages = [
+      (pkgs.nerdfonts.override { fonts = ["FiraCode" "FiraMono" "Hack" "Meslo"]; })
+    ];
+
     programs.bat.enable = true;
     programs.btop.enable = true;
     programs.fd.enable = true;
