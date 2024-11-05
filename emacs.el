@@ -253,6 +253,10 @@
   ("\\.org\\'" . org-mode)
   :config
   (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
+(use-package org-roam
+  :config
+  (setq org-roam-directory (file-truename "~/org"))
+  (org-roam-db-autosync-mode))
 
 ;; A few more useful configurations...
 (use-package emacs
@@ -307,7 +311,7 @@
 
   ;; Font stuff (N/A for -nw)
   (add-to-list 'default-frame-alist
-               '(font . "MesloLGS NF"))
+               '(font . "MesloLGS Nerd Font"))
   (set-face-attribute 'default nil :height 120)
 
   ;; Use theme
