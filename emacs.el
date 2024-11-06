@@ -314,7 +314,7 @@
                '(font . "MesloLGS Nerd Font"))
   (set-face-attribute 'default nil :height 120)
 
-  ;; Make URL links open using Windows
+  ;; Make URL links open using WSL / Windows
   (setq
    cmdExeBin"/mnt/c/Windows/System32/cmd.exe"
    cmdExeArgs '("/c" "start" ""))
@@ -322,6 +322,9 @@
    browse-url-generic-program  cmdExeBin
    browse-url-generic-args     cmdExeArgs
    browse-url-browser-function 'browse-url-generic)
+
+  ;; Fix pasting into Windows from emacs kill buffer
+  (setq select-active-regions nil)
 
   ;; Use theme
   (setq modus-themes-mode-line '(accented borderless padded))
