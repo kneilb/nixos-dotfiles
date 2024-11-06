@@ -258,7 +258,7 @@
   (setq org-roam-directory (file-truename "~/org"))
   (org-roam-db-autosync-mode))
 
-;; A few more useful configurations...
+;; More useful configuration...
 (use-package emacs
   :init
   ;; Add prompt indicator to `completing-read-multiple'.
@@ -314,6 +314,15 @@
                '(font . "MesloLGS Nerd Font"))
   (set-face-attribute 'default nil :height 120)
 
+  ;; Make URL links open using Windows
+  (setq
+   cmdExeBin"/mnt/c/Windows/System32/cmd.exe"
+   cmdExeArgs '("/c" "start" ""))
+  (setq
+   browse-url-generic-program  cmdExeBin
+   browse-url-generic-args     cmdExeArgs
+   browse-url-browser-function 'browse-url-generic)
+
   ;; Use theme
   (setq modus-themes-mode-line '(accented borderless padded))
 
@@ -340,7 +349,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-)
+ )
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
