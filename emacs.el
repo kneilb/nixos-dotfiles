@@ -264,6 +264,8 @@
   :bind (("C-c n l" . org-roam-buffer-toggle)
          ("C-c n f" . org-roam-node-find)
          ("C-c n i" . org-roam-node-insert)
+	 ("C-c n d" . org-roam-dailies-goto-date)
+	 ("C-c n t" . org-roam-dailies-goto-today)
          :map org-mode-map
          ("C-M-i"    . completion-at-point))
   :config
