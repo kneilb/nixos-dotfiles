@@ -309,6 +309,9 @@
   (setq desktop-restore-frames nil)
   (desktop-save-mode t)
 
+  ;; Weeks start on Monday.
+  (setq calendar-week-start-day 1)
+
   ;; Font stuff (N/A for -nw)
   (add-to-list 'default-frame-alist
                '(font . "MesloLGS Nerd Font"))
