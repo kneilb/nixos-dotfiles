@@ -241,9 +241,9 @@
 (use-package mermaid-mode)
 (use-package nix-mode)
 (use-package rust-mode
-  :config
-  (setq rust-format-on-save t)
-  (setq rust-most-treesitter-derive t))
+  :custom
+  (rust-format-on-save t)
+  (rust-most-treesitter-derive t))
 (use-package terraform-mode)
 
 (use-package restclient)
@@ -251,11 +251,22 @@
 (use-package org
   :mode
   ("\\.org\\'" . org-mode)
+  :bind (("C-c a" . org-agenda)
+	 ("C-c c" . org-capture)
+	 ("C-c l" . org-store-link))
+  ;; This can't be done with bind/map
   :config
   (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 (use-package org-roam
+  :custom
+  (org-roam-directory (file-truename "~/org"))
+  (org-roam-completion-everywhere t)
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n i" . org-roam-node-insert)
+         :map org-mode-map
+         ("C-M-i"    . completion-at-point))
   :config
-  (setq org-roam-directory (file-truename "~/org"))
   (org-roam-db-autosync-mode))
 
 ;; More useful configuration...
