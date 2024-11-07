@@ -252,6 +252,7 @@
   :mode
   ("\\.org\\'" . org-mode)
   :bind (("C-c a" . org-agenda)
+	 ("C-c b" . org-switchb)
 	 ("C-c c" . org-capture)
 	 ("C-c l" . org-store-link))
   ;; This can't be done with bind/map
