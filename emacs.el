@@ -17,9 +17,9 @@
 
 ;; (use-package all-the-icons)
 
-;; (use-package doom-modeline
-;;   :init (doom-modeline-mode 1)
-;;   :custom ((doom-modeline-height 15)))
+(use-package doom-modeline
+  :init (doom-modeline-mode 1)
+  :custom ((doom-modeline-height 30)))
 
 ;; Vertico (vertical interactive completion).
 (use-package vertico
