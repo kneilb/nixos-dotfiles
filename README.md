@@ -8,26 +8,32 @@ Several more things to do, including at least:
 
 - [ ] get my proper emacs config over
 - [ ] set up some nix shell goodness for various dev envs (cloud tools, rust, C++, etc etc)
-- [ ] make sure it works on another machine (write up how to bootstrap it)
+- [X] make sure it works on another machine (write up how to bootstrap it)
 - [ ] get the tide prompt config bootstrapping working
 
 ## Very quick notes
 
-Install NixOS WSL [like this](https://nix-community.github.io/NixOS-WSL/install.html)
+### Install NixOS WSL
 
-Install git
+[Follow these instructions](https://nix-community.github.io/NixOS-WSL/install.html), which boil down to:
 
-Clone this git repo (following assumes into `~/.nixos`)
+ - [Download this](https://github.com/nix-community/NixOS-WSL/releases/download/2405.5.4/nixos-wsl.tar.gz)
+ - Run `wsl --import NixOS %USERPROFILE%\NixOS\ nixos-wsl.tar.gz --version 2`
+ - Run `wsl -d NixOS`
 
-Apply the flake
-
-```
-sudo nixos-rebuild switch --extra-experimental-features nix-command --extra-experimental-features flakes --flake ~/.nixos
-```
-
-Assuming it works, the new config will have the experimental stuff enabled, so there's no need to keep passing those options.
-i.e. you can just do this:
+### Clone this git repo
 
 ```
-sudo nixos-rebuild switch flakes --flake ~/.nixos
+nix-shell -p git
+git clone https://github.com/kneilb/nixos-dotfiles.git
+mv nixos-dotfiles .nixos
 ```
+
+### Apply the flake
+
+```
+sudo nixos-rebuild switch --flake ~/.nixos
+```
+
+If you get errors about not providing attributes, it might just be that the WSL hostname isn't one of the ones I'm expecting.
+You can fix this with `sudo hostname`.
