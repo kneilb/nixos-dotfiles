@@ -9,6 +9,7 @@ Several more things to do, including at least:
 - [ ] get my proper emacs config over
 - [ ] set up some nix shell goodness for various dev envs (cloud tools, rust, C++, etc etc)
 - [ ] make sure it works on another machine (write up how to bootstrap it)
+- [ ] get the tide prompt config bootstrapping working
 
 ## Very quick notes
 
