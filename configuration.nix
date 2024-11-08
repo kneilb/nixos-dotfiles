@@ -23,7 +23,6 @@ in
   system.stateVersion = "${stateVersion}"; # Did you read the comment?
 
   # NAB additions
-  networking.hostName = "beastie";
   time.timeZone = "Europe/London";
   i18n.defaultLocale = "en_GB.UTF-8";
 

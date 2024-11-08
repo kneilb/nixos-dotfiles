@@ -30,6 +30,17 @@
             pkgsOverride
             nixos-wsl.nixosModules.wsl
             home-manager.nixosModules.home-manager
+            ./beastie.nix
+            ./configuration.nix
+          ];
+        };
+        mkx4177 = lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            pkgsOverride
+            nixos-wsl.nixosModules.wsl
+            home-manager.nixosModules.home-manager
+            ./mkx4177.nix
             ./configuration.nix
           ];
         };
