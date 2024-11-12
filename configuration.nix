@@ -44,31 +44,16 @@ in
   };
 
   environment.systemPackages = [
-    pkgs.grc
-    pkgs.wget
-    pkgs.unzip
-    pkgs.yq
-
-    pkgs.dust # Disk usage analyser
-    pkgs.ncdu # Disk usage analyser
-
-    pkgs.devenv
-
-    # Do these via devenvs instead
+    # TODO: Do these via devenvs instead
     # pkgs.cmake
     # pkgs.gcc
     # pkgs.gnumake
     # pkgs.gdb
-
     # pkgs.python3
-
-    # Needed for tide prompt
-    pkgs.kubectl
   ];
 
   programs = {
     fish.enable = true;
-    mtr.enable = true; # Network cross between ping & traceroute
   };
 
   home-manager.users.kneilb = { lib, ... }: {
@@ -76,7 +61,17 @@ in
 
     fonts.fontconfig.enable = true;
     home.packages = [
+      pkgs.devenv
+      pkgs.dust
+      pkgs.ffmpeg
+      pkgs.grc
+      pkgs.kubectl # Not in devenv, needed for tide prompt
+      pkgs.mtr
+      pkgs.ncdu
       (pkgs.nerdfonts.override { fonts = ["FiraCode" "FiraMono" "Hack" "Meslo"]; })
+      pkgs.unzip
+      pkgs.wget
+      pkgs.yq
     ];
 
     programs.bat.enable = true;
