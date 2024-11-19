@@ -29,8 +29,11 @@ git clone https://github.com/kneilb/nixos-dotfiles.git
 mv nixos-dotfiles .nixos
 ```
 
-### Apply the configuration
+### Apply the flake
 
 ```
-sudo NIXOS_CONFIG=/home/kneilb/.nixos/configuration.nix nixos-rebuild switch
+sudo nixos-rebuild switch --flake ~/.nixos
 ```
+
+If you get errors about not providing attributes, it might just be that the WSL hostname isn't one of the ones I'm expecting.
+You can fix this with `sudo hostname`.

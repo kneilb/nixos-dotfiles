@@ -14,15 +14,8 @@ let
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   stateVersion = "24.05";
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
-  emacs-overlay = builtins.fetchTarball "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
 in
 {
-  imports = [
-    <nixos-wsl/modules>
-    (import "${home-manager}/nixos")
-  ];
-
   wsl.enable = true;
   wsl.defaultUser = "kneilb";
   wsl.interop.includePath = false; # Don't add Windows to the PATH
@@ -39,10 +32,6 @@ in
     extra-substituters = https://nixpkgs-python.cachix.org https://devenv.cachix.org
     extra-trusted-public-keys = nixpkgs-python.cachix.org-1:hxjI7pFxTyuTHn2NkvWCrAUcNZLNS3ZAvfYNuYifcEU= devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
   '';
-
-  nixpkgs.overlays = [
-    (import "${emacs-overlay}")
-  ];
 
   users.mutableUsers = false;
   users.users.kneilb = {
