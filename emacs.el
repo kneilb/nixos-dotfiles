@@ -254,7 +254,8 @@
   :bind (("C-c a" . org-agenda)
 	 ("C-c b" . org-switchb)
 	 ("C-c c" . org-capture)
-	 ("C-c l" . org-store-link))
+	 ("C-c l" . org-store-link)
+	 ("C-c t" . org-todo-list))
   ;; This can't be done with bind/map
   :config
   (define-key org-mode-map (kbd "C-c C-r") verb-command-map)
