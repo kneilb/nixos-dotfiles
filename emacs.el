@@ -257,7 +257,8 @@
 	 ("C-c l" . org-store-link))
   ;; This can't be done with bind/map
   :config
-  (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
+  (define-key org-mode-map (kbd "C-c C-r") verb-command-map)
+  (setq org-agenda-files '("~/org" "~/org/daily")))
 (use-package org-roam
   :custom
   (org-roam-directory (file-truename "~/org"))
