@@ -61,6 +61,8 @@ in
 
     fonts.fontconfig.enable = true;
     home.packages = [
+      (pkgs.aspellWithDicts
+          (dict : with dict; [ en ]))
       pkgs.devenv
       pkgs.dust
       pkgs.ffmpeg
