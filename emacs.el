@@ -328,11 +328,6 @@
   ;; Weeks start on Monday.
   (setq calendar-week-start-day 1)
 
-  ;; Font stuff (N/A for -nw)
-  (add-to-list 'default-frame-alist
-               '(font . "MesloLGS Nerd Font"))
-  (set-face-attribute 'default nil :height 120)
-
   ;; Make URL links open using WSL / Windows
   (setq
    cmdExeBin"/mnt/c/Windows/System32/cmd.exe"
@@ -364,6 +359,9 @@
   (setq modus-themes-paren-match '(bold intense))
 
   (load-theme 'modus-vivendi t)
+
+  ;; Font stuff (N/A for -nw)
+  (set-face-attribute 'default nil :family "MesloLGS Nerd Font" :height 120)
   )
 
 (custom-set-variables
