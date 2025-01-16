@@ -246,6 +246,13 @@
   (rust-most-treesitter-derive t))
 (use-package terraform-mode)
 
+;; clean up whitespace on edited lines only
+(use-package ws-butler
+  :init
+  (setq ws-butler-keep-whitespace-before-point nil)
+  :config
+  (ws-butler-global-mode))
+
 (use-package restclient)
 (use-package verb)
 (use-package org
