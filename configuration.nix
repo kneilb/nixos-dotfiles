@@ -44,12 +44,6 @@ in
   };
 
   environment.systemPackages = [
-    # TODO: Do these via devenvs instead
-    # pkgs.cmake
-    # pkgs.gcc
-    # pkgs.gnumake
-    # pkgs.gdb
-    # pkgs.python3
   ];
 
   programs = {
@@ -74,6 +68,18 @@ in
       pkgs.unzip
       pkgs.wget
       pkgs.yq
+      pkgs.zip
+
+      # TODO: Do these via devenvs instead
+      pkgs.clang-tools
+      pkgs.cmake
+      pkgs.gcc
+      pkgs.gnumake
+      pkgs.gdb
+      pkgs.ninja
+      pkgs.python3
+      pkgs.rustup
+      pkgs.vcpkg
     ];
 
     programs.bat.enable = true;
